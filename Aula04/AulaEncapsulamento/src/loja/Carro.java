@@ -4,6 +4,9 @@ import javax.swing.JOptionPane;
 
 
 public class Carro {
+    
+    public static final double CAPACIDADE_MAXIMA = 100.0;
+    
     private int id;
     public String marca;
     protected String modelo;
@@ -46,6 +49,12 @@ public class Carro {
             JOptionPane.showMessageDialog(null, "Espaço insuficiente");
         }
         return espaco;
+    }
+    
+    
+    public static double calcularConsumo(double km, double litros){
+        double consumo = km / litros;
+        return consumo;
     }
     
 }

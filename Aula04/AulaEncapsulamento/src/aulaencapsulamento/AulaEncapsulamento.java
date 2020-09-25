@@ -21,8 +21,20 @@ public class AulaEncapsulamento {
         System.out.println("id: " + c1.getId());
         
         Carro c3 = new Carro("WV" , "Kombi", 50.0);
+        
         c3.cadastrar();
         System.out.println("id: " + c3.getId());
+        
+        
+        
+        
+        System.out.println("\nCap. Máxima: " + Carro.CAPACIDADE_MAXIMA );
+        System.out.println("\nConsumo Médio: " + Carro.calcularConsumo(100 , 8));
+        String s = new String();
+        
+        
+        
+        
     }
     
 }
