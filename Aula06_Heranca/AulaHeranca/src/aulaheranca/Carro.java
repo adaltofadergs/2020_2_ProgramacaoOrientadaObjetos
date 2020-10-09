@@ -18,10 +18,32 @@ public class Carro extends Veiculo{
         super(modelo);
     }
     
+    public Carro( int nPortas){
+        super();
+        this.nPortas = nPortas;
+    }
+    
     public Carro(String modelo, int nPortas){
     //    this.modelo = modelo;
         super(modelo);
         this.nPortas = nPortas;
+    }
+    
+    public Carro(int nPortas, String placa){
+        super();
+        this.placa = placa;
+        this.nPortas = nPortas;
+    }
+    
+    public void andar(){
+        System.out.println("O carro andou");
+    }
+    public void andar(int km){
+        System.out.println("O carro andou " + (km * 1000)  + " metros");
+    }
+    
+    public void andar(double km){
+        System.out.println("O carro andou " + (km * 100000)  + " centímetros");
     }
 
     @Override
@@ -39,7 +61,16 @@ public class Carro extends Veiculo{
         JOptionPane.showMessageDialog(null, t );
                 
     }
+
+    @Override
+    public double getConsumo(int km) {
+        return (km / 15); 
+    }
     
+    @Override
+    public double getConsumo(double km) {
+        return ( super.getConsumo(km) * 3 / 2) ; 
+    }
     
     
    

@@ -37,4 +37,15 @@ public class Veiculo {
     }
     
     
+    protected double getConsumo(int km){
+        double consumo = km / 10;
+        return consumo;
+    }
+    
+    protected double getConsumo(double km){
+        double consumo = km / 10;
+        return consumo;
+    }
+    
+    
 }

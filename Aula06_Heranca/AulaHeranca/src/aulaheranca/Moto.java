@@ -26,5 +26,13 @@ public class Moto extends Veiculo{
         JOptionPane.showMessageDialog(null, t );
    
     }
+
+    @Override
+    protected double getConsumo(int km) {
+        double consumo = super.getConsumo(km) / 3;
+        return consumo;  
+    }
+    
+    
     
 }
