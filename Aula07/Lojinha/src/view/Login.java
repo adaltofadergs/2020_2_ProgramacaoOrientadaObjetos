@@ -129,9 +129,7 @@ public class Login extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog( this , "Usuário ou senha incorreto");
         }
-        
-        
-        
+              
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
