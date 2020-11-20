@@ -6,10 +6,14 @@
 package view;
 
 
+import dao.ProdutoDAO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Categoria;
 import model.Produto;
 
 /**
@@ -29,22 +33,51 @@ public class FormProdutos extends javax.swing.JInternalFrame {
         listaDeProdutos = new ArrayList<Produto>();
         
         carregarTabela();
+        carregarCategorias();
+    }
+    
+    public void carregarCategorias(){
+        Categoria c0 = new Categoria(0,"Selecione...");
+        Categoria c1 = new Categoria(1,"Alimentos");
+        Categoria c2 = new Categoria(2,"Bebidas");
+        Categoria c3 = new Categoria(3,"Eletrônicos");
+        Categoria c4 = new Categoria(4,"Brinquedos");
+        
+//        List<Categoria> lista = new ArrayList<>();
+//        lista.add( c0 );
+//        lista.add( c1 );
+//        lista.add( c2 );
+//        lista.add( c3 );
+//        lista.add( c4 );
+        
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.addElement( c0 );
+        model.addElement( c1 );
+        model.addElement( c2 );
+        model.addElement( c3 );
+        model.addElement( c4 );
+        
+        cmbCategoria.setModel( model );
+        
     }
     
     private void carregarTabela(){
-        String[] colunas = {"Nome" , "Categoria"};
+        String[] colunas = {"Nome" , "Preço", "Categoria"};
         
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.setColumnIdentifiers( colunas );
         
+        listaDeProdutos = ProdutoDAO.getProdutos();
+        
         for( Produto prod : listaDeProdutos){
-            Object[] linha = { prod.nome , prod.categoria };
+            Object[] linha = { prod.nome , prod.preco, prod.categoria.nome };
             tableModel.addRow( linha );
         }
         
         tableProdutos.setModel( tableModel );
         
     }
+    
     
     
 
@@ -147,9 +180,13 @@ public class FormProdutos extends javax.swing.JInternalFrame {
         }else{
             Produto prod =  new Produto();
             prod.nome = nome;
-            prod.categoria = cmbCategoria.getSelectedItem().toString();
+            prod.preco = 0.0;
+                    
+            prod.categoria = (Categoria)  cmbCategoria.getSelectedItem();
             
-            listaDeProdutos.add( prod );
+            ProdutoDAO.inserir( prod );
+            
+            //listaDeProdutos.add( prod );
             
             carregarTabela();
             
